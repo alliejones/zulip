@@ -29,7 +29,7 @@ STATIC_PATH = 'static/'
 subprocess.check_call(['tools/compile-handlebars-templates'])
 
 # Create webpack bundle
-subprocess.check_call(['tools/node' 'node_modules/.bin/webpack --config webpack.production.config.js'])
+subprocess.check_call(['tools/webpack'])
 
 def get_changed_source_files(other_checkout):
     """ Get list of changed static files since other_checkout.
