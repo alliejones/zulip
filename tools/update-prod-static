@@ -25,7 +25,7 @@ os.chdir(settings.DEPLOY_ROOT)
 # Redirect child processes' output to a log file (most recent run only).
 fp = open('update-prod-static.log', 'w')
 
-# Compile Handlebars templates and minify JavaScripts.
+# Compile Handlebars templates, create the webpack build and minify JavaScripts.
 subprocess.check_call(['python', 'tools/minify-js']
                       + (['--prev-deploy', prev_deploy] if prev_deploy else []),
                       stdout=fp, stderr=fp)
