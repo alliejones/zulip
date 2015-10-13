@@ -46,6 +46,8 @@ NPM_DEPENDENCIES = {
         "cssstyle",
         "htmlparser2",
         "nwmatcher",
+        "webpack",
+        "webpack-dev-server",
     ]
 }
 
