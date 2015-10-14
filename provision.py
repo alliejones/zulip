@@ -39,18 +39,6 @@ APT_DEPENDENCIES = {
     ]
 }
 
-# TODO: backport node-{cssstyle,htmlparser2,nwmatcher} to trusty,
-# so we can eliminate npm (above) and this section.
-NPM_DEPENDENCIES = {
-    "trusty": [
-        "cssstyle",
-        "htmlparser2",
-        "nwmatcher",
-        "webpack",
-        "webpack-dev-server",
-    ]
-}
-
 VENV_PATH="/srv/zulip-venv"
 ZULIP_PATH="/srv/zulip"
 
@@ -162,12 +150,10 @@ def main():
     with sh.sudo:
         sh.cp(REPO_STOPWORDS_PATH, TSEARCH_STOPWORDS_PATH, **LOUD)
 
-    # Add additional node packages for test-js-with-node.
-    with sh.sudo:
-        sh.npm.install(*NPM_DEPENDENCIES["trusty"], g=True, prefix="/usr", **LOUD)
-
-    # Management commands expect to be run from the root of the project.
+    # npm install and management commands expect to be run from the root of the project.
     os.chdir(ZULIP_PATH)
+
+    sh.npm.install()
 
     os.system("tools/download-zxcvbn")
     os.system("tools/emoji_dump/build_emoji")
