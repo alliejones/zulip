@@ -1,12 +1,19 @@
 module.exports = {
-    entry: './static/js/src/main.js',
+    entry: [
+        'webpack-dev-server/client?http://localhost:9991/socket.io',
+        './static/js/src/main.js'
+    ],
     devtool: 'eval',
     output: {
+        publicPath: 'http://localhost:9991/webpack/',
         path: './static/js',
         filename: 'bundle.js'
     },
     devServer: {
-        host: '0.0.0.0',
-        port: 9999
+        port: 9994,
+        watchOptions: {
+            aggregateTimeout: 300,
+            poll: 1000
+        }
     }
 };

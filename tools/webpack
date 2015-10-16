@@ -20,7 +20,7 @@ def run():
 def run_watch():
     # watch and rebuild on changes, serve file from memory via webpack-dev-server
     subprocess.Popen(['tools/node', 'node_modules/.bin/webpack-dev-server'] +
-        ['--config', 'webpack.config.js', '--inline', '--watch-poll'])
+        ['--config', 'webpack.config.js', '--watch-poll'])
 
 if __name__ == '__main__':
     if len(sys.argv) == 2 and sys.argv[1] == 'watch':

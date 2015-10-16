@@ -9,8 +9,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # The Zulip development environment runs on 9991 on the guest.
   config.vm.network "forwarded_port", guest: 9991, host: 9991, host_ip: "127.0.0.1"
-  # Webpack dev server requires its own port
-  config.vm.network "forwarded_port", guest: 9999, host: 9999, host_ip: "127.0.0.1"
 
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.synced_folder ".", "/srv/zulip"

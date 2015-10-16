@@ -40,7 +40,7 @@ var page_params = {{ page_params }};
 {% minified_js 'app' %}
 
 {% if not pipeline %}
-<script type="text/javascript" src="http://localhost:9999/bundle.js"></script>
+<script type="text/javascript" src="/webpack/bundle.js"></script>
 {% endif %}
 
 {% if debug %}

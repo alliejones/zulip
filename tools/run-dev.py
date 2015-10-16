@@ -62,6 +62,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 proxy_port   = base_port
 django_port  = base_port+1
 tornado_port = base_port+2
+webpack_port = base_port+3
 
 os.chdir(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -98,6 +99,10 @@ class Resource(resource.Resource):
             request.uri.startswith('/api/v1/events') or
             request.uri.startswith('/sockjs')):
             return proxy.ReverseProxyResource('localhost', tornado_port, '/'+name)
+
+        elif (request.uri.startswith('/webpack') or
+              request.uri.startswith('/socket.io')):
+            return proxy.ReverseProxyResource('localhost', webpack_port, '/'+name)
 
         return proxy.ReverseProxyResource('localhost', django_port, '/'+name)
 
