@@ -33,7 +33,6 @@ APT_DEPENDENCIES = {
         "supervisor",
         "git",
         "npm",
-        "node-jquery",
         "yui-compressor",
         "puppet",               # Used by lint-all
     ]
