@@ -29,6 +29,7 @@ APT_DEPENDENCIES = {
         "python-dev",
         "hunspell-en-us",
         "nodejs",
+        "nodejs-legacy",
         "python-virtualenv",
         "supervisor",
         "git",
@@ -152,7 +153,11 @@ def main():
     # npm install and management commands expect to be run from the root of the project.
     os.chdir(ZULIP_PATH)
 
-    sh.npm.install()
+    with sh.sudo:
+        # workaround for node 0.10 bug
+        sh.npm(['cache', 'clear'], **LOUD)
+
+    sh.npm.install(**LOUD)
 
     os.system("tools/download-zxcvbn")
     os.system("tools/emoji_dump/build_emoji")
