@@ -12,7 +12,7 @@ from six import unichr
 from PIL import Image, ImageDraw, ImageFont
 
 AA_SCALE = 8
-SIZE = (68, 68)
+SIZE = (136, 136)
 SPRITE_SIZE = (50, 50)
 BIG_SIZE = tuple([x * AA_SCALE for x in SIZE])
 
@@ -20,9 +20,9 @@ class MissingGlyphError(Exception):
     pass
 
 
-def color_font(code_point, code_point_to_fname_map):
-    name = code_point_to_fname_map[int(code_point, 16)]
-    in_name = 'bitmaps/strike0/{}.png'.format(name)
+def color_font(name, code_point, code_point_to_fname_map):
+    filename = code_point_to_fname_map[int(code_point, 16)]
+    in_name = 'bitmaps/strike0/{}.png'.format(filename)
     out_name = 'out/unicode/{}.png'.format(code_point)
     out_sprite_name = 'out/sprite/{}.png'.format(name)
     try:
@@ -100,7 +100,7 @@ def main():
     code_point_to_fname_map = code_point_to_file_name_map("NotoColorEmoji.ttx")
     for name, code_point in emoji_map.items():
         try:
-            color_font(code_point, code_point_to_fname_map)
+            color_font(name, code_point, code_point_to_fname_map)
         except MissingGlyphError:
             try:
                 bw_font(name, code_point)
