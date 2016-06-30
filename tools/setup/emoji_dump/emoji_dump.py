@@ -115,7 +115,7 @@ def main():
             'out/{}.png'.format(name)
         )
 
-    subprocess.call('glue out/sprite . --namespace=emoji --sprite-namespace= --retina',
+    subprocess.call('glue out/sprite . --namespace=emoji --sprite-namespace= --retina --css-template=css_template.css',
                     shell=True)
 
     if failed:
